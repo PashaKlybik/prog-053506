@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <time.h>
 
 double performFactorial(int n) {
     if (n < 0) return 0;
@@ -37,6 +38,8 @@ int calculateIteratively(double x, double e, int n, double sum) {
 int main() {
     double x = 0;
     double e = 0;
+    double startTime = 0;
+    double endTime = 0;
     char isUserWantToContinue;
     
     while(true){
@@ -50,8 +53,15 @@ int main() {
         
         printf("Yours choise: x = %lf, e = %lf.\n", x, e);
         
+        startTime = clock();
         printf("n = %d.\n", сalculateRecursively(x, e, 1, x));
+        endTime = clock();
+        printf("It took %lf milliseconds for сalculateRecursively.\n\n", endTime - startTime);
+        
+        startTime = clock();
         printf("n = %d.\n\n", calculateIteratively(x, e, 1, x));
+        endTime = clock();
+        printf("It took %lf milliseconds for calculateIteratively.\n\n", endTime - startTime);
         
         printf("If you want continue - enter 'y' into console, otherwise enter any char to exit program.\nYour Choise: ");
         isUserWantToContinue = getchar();
