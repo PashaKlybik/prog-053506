@@ -7,6 +7,7 @@ void getIndexForStartCounting(char* userNum, int* indexForStart){
     for(int index = 0; index < strlen(userNum); index++){
         if(userNum[index] == '.' || userNum[index] == ','){
             *indexForStart = index;
+            break;
         }
     }
     
