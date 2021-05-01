@@ -21,11 +21,11 @@ int main()
     }
 
     if (sumInt > sumFract)
-        printf("sumInt = %d\n", sumInt);
+        printf("the sum of the digits of the integer part = %d\n", sumInt);
     else if (sumFract > sumInt)
-        printf("sumFract = %d\n", sumFract);
+        printf("the sum of the digits of the fractional part = %d\n", sumFract);
     else if (sumInt == sumFract)
-        printf("sumInt = sumFract = %d\n", sumInt);
+        printf("the sum of the digits of the fractional part = integer part  = %d\n", sumInt);
 
 }
 
