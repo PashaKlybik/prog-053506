@@ -45,13 +45,13 @@ Date setDate(char day, Month month) {
         return date;
 }
 
-char* toString(Date date) {
+char* dateToString(Date date) {
         char* output = (char*)malloc(6);
         sprintf(output, "%02d:%02d", date.day, date.month);
         return output;
 }
 
-Date fromString(char* input) {
+Date dateFromString(char* input) {
         Date date = setDate(0, 0);
         date.day += input[0] * 10 - 480;
         date.day += input[1] - 48;
@@ -264,9 +264,76 @@ _Bool canBeFamily(Human human1, Human human2) {
                 );
 }
 
+void enterPerson(Human* human) {
+        printf("Enter birth date of person:");
+        char* buff = (char*)malloc(8);
+        scanf("%5s", buff);
+        Date date = dateFromString(buff);
+        printf("Enter sex of person:");
+        scanf("%7s", buff);
+        Sex sex = sexFromString(buff);
+        *human = setHuman(sex, date);
+}
+
+
+
+void selectionMenu() {
+        Human human1;
+        Human human2;
+        int currentSelection = 8;
+        do {
+                printf("\
+Please select menu item:\n\
+1.Enter first person data\n\
+2.Enter second person data\n\
+3.Determine sign of the zodiac of each human\n\
+4.Determine if they can be friends\n\
+5.Determine if they can be business partners\n\
+6.Determine if they can live in marriage\n\
+7.About this program\n\
+8.Exit\n"
+);
+                scanf("%d", &currentSelection);
+                if(currentSelection == 1) {
+                        enterPerson(&human1);
+                } else if(currentSelection == 2) {
+                        enterPerson(&human2);
+                } else if(
+                        human1.sex != 404 &&
+                        human1.zodiac != 404 &&
+                        human2.sex != 404 &&
+                        human2.sex != 404
+                        ) {
+                        if(currentSelection == 3) {
+                                printf("Zodiac of first human is %s\nZodiac of the second human is %s\n",
+                                        zodiacToString(human1.zodiac), zodiacToString(human2.zodiac));
+                        } else if(currentSelection == 4) {
+                                if(canBeFriends(human1, human2)) {
+                                        printf("That humans can be friends\n");
+                                } else {
+                                        printf("That humans can't be friends\n");
+                                }
+                        } else if(currentSelection == 5) {
+                                if(canBeBusinessPartners(human1, human2)) {
+                                        printf("That humans can be business partners\n");
+                                } else {
+                                        printf("That humans can't be business partners\n");
+                                }
+                        } else if(currentSelection == 6) {
+                                if(canBeFamily(human1, human2)) {
+                                        printf("That humans can live in marriage\n");
+                                } else {
+                                        printf("That humans can't be live in marriage\n");
+                                }
+                        } else if(currentSelection == 7) {
+                                printf("Info\n");
+                        }
+                } else {
+                        printf("error");
+                }
+        } while(currentSelection != 8);
+}
+
 int main() {
-        Date date = fromString("00:01");
-        char* buff = toString(date);
-        printf("%s", buff);
-        free(buff);
+        selectionMenu();
 }
