@@ -54,7 +54,7 @@ void fillQueue(Queue *queue){
 }
 
 void printQueue(Queue *queue){
-    if(isQueueEmpty(queue) == 1){
+    if(isQueueEmpty(queue)){
         printf("Empty\n");
         return;
     }
@@ -160,6 +160,10 @@ void pushIntElementsToStack(Stack2 **headElement, int element){
 }
 
 int popInt(Stack2 **headElement){
+    if(*headElement == NULL){
+        printf("Stack Empty.");
+        return 0;
+    }
     int outNumber = (*headElement) -> anyNumber;
     *headElement = (*headElement) -> nextElement;
     return outNumber;
