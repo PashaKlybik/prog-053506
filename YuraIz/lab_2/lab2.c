@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef enum Month {
         JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE,
@@ -208,9 +209,9 @@ typedef enum Sex {
 } Sex;
 
 Sex sexFromString(char* input) {
-        if(input == "male") {
+        if(!strcmp(input, "male")) {
                 return MALE;
-        } else if(input == "female") {
+        } else if(!strcmp(input, "female")) {
                 return FEMALE;
         } else {
                 return 404;
@@ -256,11 +257,12 @@ _Bool canBeBusinessPartners(Human human1, Human human2) {
 
 _Bool canBeFamily(Human human1, Human human2) {
         return (
-                (human1.sex != human2.sex) &&
-                (human1.element == AIR && human2.element == WATER) ||
-                (human2.element == AIR && human1.element == WATER) ||
-                (human1.element == FIRE && human2.element == EARTH) ||
-                (human2.element == FIRE && human1.element == EARTH)
+                (human1.sex != human2.sex) && (
+                        (human1.element == AIR && human2.element == WATER) ||
+                        (human2.element == AIR && human1.element == WATER) ||
+                        (human1.element == FIRE && human2.element == EARTH) ||
+                        (human2.element == FIRE && human1.element == EARTH)
+                        )
                 );
 }
 
@@ -273,27 +275,43 @@ void enterPerson(Human* human) {
         scanf("%7s", buff);
         Sex sex = sexFromString(buff);
         *human = setHuman(sex, date);
+        free(buff);
 }
 
-
-
 void selectionMenu() {
-        Human human1;
-        Human human2;
+        Human human1 = setHuman(404, dateFromString("00:00"));
+        Human human2 = setHuman(404, dateFromString("00:00"));
         int currentSelection = 8;
         do {
-                printf("\
-Please select menu item:\n\
-1.Enter first person data\n\
-2.Enter second person data\n\
+                printf("Please select menu item:\n");
+                printf("1.Enter first person data\n");
+                if(human1.sex != 404) {
+                        char* buff = NULL;
+                        buff = dateToString(human1.birthDate);
+                        printf("  current data: date: %s, sex %s\n",
+                                buff, sexToString(human1.sex));
+                        free(buff);
+                        //fflush(stdin);
+                }
+                printf("2.Enter second person data\n");
+                if(human2.sex != 404) {
+                        char* buff = NULL;
+                        buff = dateToString(human2.birthDate);
+                        printf("  current data: date: %s, sex %s\n",
+                                buff, sexToString(human2.sex));
+                        free(buff);
+                }
+                if(human1.sex != 404 && human2.sex != 404) {
+                        printf("\
 3.Determine sign of the zodiac of each human\n\
 4.Determine if they can be friends\n\
 5.Determine if they can be business partners\n\
 6.Determine if they can live in marriage\n\
-7.About this program\n\
-8.Exit\n"
-);
+");
+                }
+                printf("7.About this program\n8.Exit\n");
                 scanf("%d", &currentSelection);
+                printf("\n");
                 if(currentSelection == 1) {
                         enterPerson(&human1);
                 } else if(currentSelection == 2) {
@@ -305,28 +323,28 @@ Please select menu item:\n\
                         human2.sex != 404
                         ) {
                         if(currentSelection == 3) {
-                                printf("Zodiac of first human is %s\nZodiac of the second human is %s\n",
+                                printf("Zodiac of the first human is %s\nZodiac of the second human is %s\n\n",
                                         zodiacToString(human1.zodiac), zodiacToString(human2.zodiac));
                         } else if(currentSelection == 4) {
                                 if(canBeFriends(human1, human2)) {
-                                        printf("That humans can be friends\n");
+                                        printf("That humans can be friends\n\n");
                                 } else {
-                                        printf("That humans can't be friends\n");
+                                        printf("That humans can't be friends\n\n");
                                 }
                         } else if(currentSelection == 5) {
                                 if(canBeBusinessPartners(human1, human2)) {
-                                        printf("That humans can be business partners\n");
+                                        printf("That humans can be business partners\n\n");
                                 } else {
-                                        printf("That humans can't be business partners\n");
+                                        printf("That humans can't be business partners\n\n");
                                 }
                         } else if(currentSelection == 6) {
                                 if(canBeFamily(human1, human2)) {
-                                        printf("That humans can live in marriage\n");
+                                        printf("That humans can live in marriage\n\n");
                                 } else {
-                                        printf("That humans can't be live in marriage\n");
+                                        printf("That humans can't be live in marriage\n\n");
                                 }
                         } else if(currentSelection == 7) {
-                                printf("Info\n");
+                                printf("Info\n\n");
                         }
                 } else {
                         printf("error\n");
