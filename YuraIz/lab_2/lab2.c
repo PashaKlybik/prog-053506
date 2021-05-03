@@ -329,7 +329,7 @@ Please select menu item:\n\
                                 printf("Info\n");
                         }
                 } else {
-                        printf("error");
+                        printf("error\n");
                 }
         } while(currentSelection != 8);
 }
