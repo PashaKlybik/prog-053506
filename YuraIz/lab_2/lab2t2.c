@@ -2,72 +2,57 @@
 #include <stdlib.h>
 #include <math.h>
 
-double fact(double a) {
-        if(a == 0) return 1;
-        for(int i = a - 1; i > 0; i--) {
-                a *= i;
-        }
-        return a;
-}
-
-double power(double a, int n) {
-        if(n == 0) {
-                return 1;
-        }
-        for(int a2 = a; n > 1; n--) {
-                a *= a2;
-        }
-        return a;
-}
-
-double partOfDecomposition(double x, int n) {
-        return ((n % 2) ? 1 : -1) * ((power(x, 2 * n - 1) / fact(2 * n - 1)));
-}
+#define PI 3.141592653589793238462643383279502884L
 
 struct {
         double x;
         int n;
         double value;
-} lastPOD;
+} podCache, dCache;
 
-
-double newPOD(double x, int n) {
-        if(lastPOD.x == x - 1 && lastPOD.n == n - 1) {
-                lastPOD.x++;
-                lastPOD.n++;
-                lastPOD.value = -lastPOD.value * x / n;
-                return lastPOD.value;
-        } else {
-                double output = (n % 2) ? 1 : -1;
-                for(int i = 1; i <= 2 * n - 1; output *= x / i++);
-                lastPOD.x = x;
-                lastPOD.n = n;
-                lastPOD.value = output;
-                return output;
-        }
+double POD(double x, int n) {
+        double output = (podCache.x == x && podCache.n == n - 1) ? -podCache.value : (n % 2) ? 1 : -1;
+        for(int i = (podCache.x == x && podCache.n == n - 1) ? 2 * podCache.n : 1; i <= 2 * n - 1; output *= x / i++);
+        podCache.x = x;
+        podCache.n = n;
+        podCache.value = output;
 }
 
 double decomposition(double x, int n) {
         double output = 0;
-        for(int i = 1; i < n; i++) {
-                output += newPOD(x, i);
+        for(int i = 1048576; i > 2; i /= 2) {
+                while(x > i * PI) {
+                        x -= i * PI;
+                }
         }
-        return output;
+        if(dCache.x == x && podCache.n < n) {
+                output = podCache.value;
+                for(int i = podCache.n; i < n; output += POD(x, i++));
+        } else {
+                for(int i = 1; i < n; output += POD(x, i++));
+        }
+        dCache.x = x;
+        dCache.n = n;
+        dCache.value = output;
 }
 
 int main() {
-        double x = 20;
-        double e = 0.1;
-        //printf("x = ");
-        //scanf("%lf", &x);
-        int n = 10000;
-        for(int x = 0; x <= 30; x++) {
-                //printf("sin(x) = %.50lf\n", sin(x));
-                //if((int)decomposition(x, n)) {
-                printf("x: %d\n", x);
-                printf("%lf\n", decomposition(x, n));
-                printf("%lf\n", sin(x));
-                // break;
-         //}
+        unsigned int n = 1000000000;
+        double e = 0.01;
+        double temp = 0;
+        for(int i = 0; i < 10000; i++) {
+                temp = decomposition(5000, i) - sin(5000);
+                if(temp < e && temp > -e) {
+                        printf("%d\n", i);
+                        break;
+                }
         }
+
+        //printf("%.14lf\n", decomposition(5000, n));
+        //printf("%.14lf\n", sin(5000));
+        //for(double x = 0; x <= 40; x++) {
+        //        printf("x: %d\n", x);
+        //        printf("%.10lf\n", decomposition(x, n));
+        //        printf("%.10lf\n", sin(x));
+        //}
 }
