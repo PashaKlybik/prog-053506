@@ -24,7 +24,7 @@ double partOfDecomposition(double x, int n) {
         return ((n % 2) ? 1 : -1) * ((power(x, 2 * n - 1) / fact(2 * n - 1)));
 }
 
-struct LastPOD {
+struct {
         double x;
         int n;
         double value;
@@ -35,15 +35,16 @@ double newPOD(double x, int n) {
         if(lastPOD.x == x - 1 && lastPOD.n == n - 1) {
                 lastPOD.x++;
                 lastPOD.n++;
-                lastPOD.value = lastPOD.value * x / n;
+                lastPOD.value = -lastPOD.value * x / n;
                 return lastPOD.value;
+        } else {
+                double output = (n % 2) ? 1 : -1;
+                for(int i = 1; i <= 2 * n - 1; output *= x / i++);
+                lastPOD.x = x;
+                lastPOD.n = n;
+                lastPOD.value = output;
+                return output;
         }
-        double output = (n % 2) ? 1 : -1;
-        for(int i = 1; i <= 2 * n - 1; output *= x / i++);
-        lastPOD.x = x;
-        lastPOD.n = n;
-        lastPOD.value = output;
-        return output;
 }
 
 double decomposition(double x, int n) {
