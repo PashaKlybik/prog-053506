@@ -29,13 +29,15 @@ double decomposition(double x, int n) {
 }
 
 int main() {
-        double temp = 0;
-        double e = 0;
+
+        double e, x, temp;
+        printf("x = ");
+        scanf("%lf", &x);
         printf("e = ");
         scanf("%lf", &e);
-        if(e > 1e-20) {
-                for(int n = 1; n < 20; n++) {
-                        temp = decomposition(5, n) - sin(5);
+        if(e > 1e-50) {
+                for(int n = 1; n < 50; n++) {
+                        temp = decomposition(x, n) - sin(x);
                         if(temp < e && temp > -e) {
                                 printf("n: %d\n", n);
                                 return 0;
