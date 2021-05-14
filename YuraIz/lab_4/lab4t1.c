@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 //Task 4.1 (15)
 
 /* Converts of the word as follows:
