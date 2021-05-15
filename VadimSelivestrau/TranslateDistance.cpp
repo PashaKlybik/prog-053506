@@ -1,6 +1,8 @@
 ﻿//ВАРИАНТ - 9
 #include <Windows.h>
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 void Menu()
 {
     printf("1 - Ввод значения длины\n");
