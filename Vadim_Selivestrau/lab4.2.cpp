@@ -1,6 +1,9 @@
 ﻿//ВАРИАНТ 4.2.2
 //#include <stdio.h>
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
 int main()
 {
 	char* string = (char*)calloc(255, 1);
