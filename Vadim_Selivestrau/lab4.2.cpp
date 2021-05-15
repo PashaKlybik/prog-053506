@@ -8,7 +8,7 @@ int main()
 	my_file = fopen("test.txt", "r");
 	if (my_file == NULL)
 	{
-		printf("error nahui");
+		printf("error");
 	}
     while (fgets(string, 50, my_file) != NULL) {}
     printf("%s", string);
