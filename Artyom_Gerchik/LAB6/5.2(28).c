@@ -8,6 +8,8 @@
 
 char vowelChars[] = "AaEeIiOoUuYy";
 char consonantChars[] = "BbCcDdFfGgHhJjKkLlMmNnPpQqRrSsTtVvWwXxZz";
+int VowelCharsCounterForTraversal = 0;
+int ConsonantCharsCounterForTraversal = 0;
 
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\BINARY SEARCH TREE//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
@@ -122,6 +124,33 @@ void printInorder(struct node* root){
     }
 }
 
+bool containsVowel(char charToAnalyze);
+bool containsConsonant(char charToAnalyze);
+void whichOneIsMore(int vowels, int consonants);
+
+void InOrderForTask(struct node* root){
+    
+    if (root == NULL){
+        return;
+    }
+    
+    if(root->left_child){
+        InOrderForTask(root->left_child);
+    }
+    
+    if(containsVowel(root->symbol)){
+        VowelCharsCounterForTraversal++;
+    }
+    
+    if(containsConsonant(root->symbol)){
+        ConsonantCharsCounterForTraversal++;
+    }
+        
+    if(root->right_child){
+        InOrderForTask(root->right_child);
+    }
+}
+
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\BINARY SEARCH TREE//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\
 
 //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\SOME METHODS//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
@@ -197,6 +226,12 @@ int main(){
     
     whichOneIsMore(vowelCounter, consonantCounter);
     printf("\n\n");
+    
+    printf("InOrder Traversal, But For Counting:\n");
+    InOrderForTask(root);
+    whichOneIsMore(VowelCharsCounterForTraversal, ConsonantCharsCounterForTraversal);
+    printf("\n\n");
+    
     
     return 0;
 }
