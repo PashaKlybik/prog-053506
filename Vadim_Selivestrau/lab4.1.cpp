@@ -1,5 +1,8 @@
 ﻿//variant(4.1(2))
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
 int main()
 {
     char* string = (char*)calloc(255, 1);
