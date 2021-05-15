@@ -7,9 +7,9 @@ void main(void)
 	char* locale = setlocale(LC_ALL, "");
 	int n, k, i;
 	double f, sum = 0, p = 1;
-	printf("Введите количество слагаемых: ");
+	printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃР»Р°РіР°РµРјС‹С…: ");
 	scanf("%d", &n);
-	printf("Введите вещественное число f: ");
+	printf("Р’РІРµРґРёС‚Рµ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ f: ");
 	scanf("%lf", &f);
 		for (int i = 1; i <= n; i++)
 		{
