@@ -1,5 +1,7 @@
 ﻿//ВАРИАНТ 3.3.2
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 int max(int a, int b) {
     return a > b ? a : b;
 }
