@@ -38,7 +38,7 @@ void Print(void)
     {
 
         printf("%2i. %-20s %-20i %3i\n", Product[i].shtrix_kod ,Product[i].Name_Of_Product,Product[i].Kol,Product[i].Cen);
-        sum+=Product[i].Kol*Cena[i];
+        sum+=Product[i].Kol*Product[i].Cen;
     }
     char d;
     int Disk;
@@ -152,7 +152,7 @@ int Menu(void)
 {
   int c = 0;
 
-  while ((c < '0' || c > '5') && c != 27)
+  while (c < '0' || c > '3')
   {
     printf("0 : Выход\n"
            "1 : Список Продуктов\n"
@@ -166,7 +166,7 @@ int Menu(void)
 }
 void clear (void)
     {
-        while ( getchar() != '\n' );
+        while(getchar()!='\n');
     }
 //-------------------------------------------------------------------------------
 void main(void)
@@ -176,7 +176,7 @@ void main(void)
   int Selection;
 
   Number = 0;
-  while ((Selection = Menu()) != '0' && Selection != 27)
+  while ((Selection = Menu()) != '0')
   {
     switch (Selection)
     {
