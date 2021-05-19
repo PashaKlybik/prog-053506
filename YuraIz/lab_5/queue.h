@@ -2,9 +2,9 @@
  *     / / / /_  __,___,____    /  _/____
  *    / /_/ / / / / __ / __ \   / / /_  /
  *    \__, / /_/ / /  / /_/ / _/ /   / /_
- *   /____/\____/_/   \___\_\/___/  /___/  https://github.com/yuraiz/
+ *   /____/\____/_/   \___\_\/___/  /___/  https://github.com/YuraIz/
  *
- *   Queue header
+ *   Include file for the queue
  */
 
 #include <stdlib.h>
@@ -12,10 +12,16 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+typedef struct QueueData {
+        int stackNumber;
+        char action; // 'A' - adding, 'D' -deleting
+        long data;
+} QueueData;
+
 typedef struct ElementOfQueue {
         struct ElementOfQueue* prev;
         struct ElementOfQueue* next;
-        int data;
+        QueueData data;
 } ElementOfQueue;
 
 typedef struct Queue {
@@ -23,35 +29,48 @@ typedef struct Queue {
         struct ElementOfQueue* last;
 } Queue;
 
-void init(Queue* queue) {
-        queue->first = NULL;
-        queue->last = NULL;
-}
-
-void enqueue(Queue* queue, int data) {
+void enqueue(Queue* queue, QueueData data) {
         ElementOfQueue* el = (ElementOfQueue*)malloc(sizeof(ElementOfQueue));
         el->data = data;
         el->prev = NULL;
         el->next = queue->last;
+        if(queue->last != NULL) {
+                queue->last->prev = el;
+        }
         queue->last = el;
         if(queue->first == NULL) {
                 queue->first = el;
         }
 }
 
-int dequeue(Queue* queue) {
-#ifdef _STDIO_H
+QueueData dequeue(Queue* queue) {
         if(queue->first == NULL) {
+#ifdef _STDIO_H
                 printf("queue is empty\n");
+#endif
                 exit(1);
         }
-#endif
-        int data = queue->first->data;
+
+        QueueData data = queue->first->data;
         ElementOfQueue* temp = queue->first;
         queue->first = queue->first->prev;
         free(temp);
-        queue->first->next = NULL;
+        if(queue->first != NULL) {
+                queue->first->next = NULL;
+        }
         return data;
 }
+
+#ifdef _STDIO_H
+void printQueue(Queue* queue) {
+        ElementOfQueue* current = queue->last;
+        printf(">");
+        while(current != NULL) {
+                printf(" %ld", current->data.data);
+                current = current->next;
+        }
+        printf(" >\n");
+}
+#endif
 
 #endif
