@@ -1,0 +1,13 @@
+﻿  Lab4_2.c
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(32,21): warning C4047: функция: "int" отличается по уровням косвенного обращения от "char [100]"
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(32,14): warning C4024: Fill: различные типы для формального и фактического параметров 1
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(35,22): warning C4047: функция: "int" отличается по уровням косвенного обращения от "char [100]"
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(35,15): warning C4024: Fill: различные типы для формального и фактического параметров 1
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(42,12): warning C4020: div: слишком много фактических параметров
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(43,13): warning C4020: div: слишком много фактических параметров
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(132,34): warning C4028: формальный параметр 2 отличается от объявления
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(148,23): warning C4028: формальный параметр 1 отличается от объявления
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(150,21): warning C4013: strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(218,1): warning C4029: объявленный список формальных параметров отличается от объявления
+C:\Users\arsen\source\repos\Lab5C\Lab4_2.c(130): warning C4715: Equal: значение возвращается не при всех путях выполнения
+  Lab4(2)C.vcxproj -> C:\Users\arsen\source\repos\Lab5C\Debug\Lab4(2)C.exe
