@@ -57,19 +57,21 @@ QueueData dequeue(Queue* queue) {
         free(temp);
         if(queue->first != NULL) {
                 queue->first->next = NULL;
+        } else {
+                queue->last = NULL;
         }
         return data;
 }
 
 #ifdef _STDIO_H
 void printQueue(Queue* queue) {
-        ElementOfQueue* current = queue->last;
-        printf(">");
+        ElementOfQueue* current = queue->first;
+        printf("<");
         while(current != NULL) {
-                printf(" %ld", current->data.data);
-                current = current->next;
+                printf("%d%c%ld ", current->data.stackNumber, current->data.action, current->data.data);
+                current = current->prev;
         }
-        printf(" >\n");
+        printf(" <\n");
 }
 #endif
 
