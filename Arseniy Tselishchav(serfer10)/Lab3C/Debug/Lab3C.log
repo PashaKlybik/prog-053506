@@ -1,0 +1,5 @@
+﻿  Source.c
+C:\Users\arsen\source\repos\Lab3C\Source.c(17,21): warning C4013: strlen: нет определения; предполагается "extern" с возвратом типа "int"
+C:\Users\arsen\source\repos\Lab3C\Source.c(61,27): warning C4020: PrintArr: слишком много фактических параметров
+C:\Users\arsen\source\repos\Lab3C\Source.c(77,1): warning C4029: объявленный список формальных параметров отличается от объявления
+  Lab3C.vcxproj -> C:\Users\arsen\source\repos\Lab3C\Debug\Lab3C.exe
