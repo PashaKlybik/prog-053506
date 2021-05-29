@@ -1,6 +1,0 @@
-﻿  Source.c
-C:\Users\arsen\source\repos\Lab2_2C\Source.c(12,7): warning C4215: нестандартное расширение: long float
-C:\Users\arsen\source\repos\Lab2_2C\Source.c(21,1): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-C:\Users\arsen\source\repos\Lab2_2C\Source.c(30,1): warning C4142: "factorial": неопасное переопределение типа
-C:\Users\arsen\source\repos\Lab2_2C\Source.c(5): message : см. объявление "factorial"
-  Lab2_2C.vcxproj -> C:\Users\arsen\source\repos\Lab2_2C\Debug\Lab2_2C.exe
