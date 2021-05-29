@@ -1,3 +1,4 @@
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include<conio.h>
@@ -5,84 +6,65 @@
 #include<locale.h>
 #include<malloc.h>
 
-#define NUM_OF_MATRIX  2
-#define NUM_OF_WORDS   3
-#define SIZE_0F_WORD   15
-
 int main()
 {
 	system("chcp 1251");
 	system("cls");
-	int i, j, k, m, diff = ' ';
-	int check = 0;
-	char*** matrix;
+	FILE* ptrFile = fopen("text.txt", "r+");
+	char** str;
+	int i, j, number, add;
+	fpos_t pos;
 
-	matrix = (char***)calloc(NUM_OF_MATRIX, sizeof(char**));
-	for (i = 0; i < NUM_OF_MATRIX; i++)
+	str = (char**)malloc(100 * sizeof(char*));
+	for (i = 0; i < 100; i++)
 	{
-		matrix[i] = (char**)calloc(NUM_OF_WORDS, sizeof(char*));
-		printf("Введите массив %d:\n", i + 1);
-
-		for (j = 0; j < NUM_OF_WORDS; j++)
-		{
-			matrix[i][j] = (char*)calloc(SIZE_0F_WORD, sizeof(char));
-			gets(matrix[i][j]);
-		}
-		putchar('\n');
+		str[i] = (char*)malloc(82 * sizeof(char));
 	}
 
-
-	for (i = 0; i < NUM_OF_MATRIX; i++)
+	if (ptrFile == NULL)
 	{
-		for (j = 0; j < NUM_OF_WORDS; j++)
+		perror("Ошибка открытия файла");
+		getchar();
+	}
+	else
+	{
+		setbuf(ptrFile, NULL);
+		fgetpos(ptrFile, &pos);
+
+		i = 0;
+		while (!feof(ptrFile))
 		{
-			check = 1;
+			fgets(str[i], 81, ptrFile);
+			i++;
+		}
+		number = i;
 
-			for (int k = 0; matrix[i][j][k]; k++)
-			{
-				for (int m = 0; matrix[i][j][m];  m++)
-				{
-					if (matrix[i][j][k] == matrix[i][j][m] && k!=m)
-						check = 0;
-				}
-			}
+		rewind(ptrFile);
 
-			if (!check)
-			{
-				for (int k = 0; matrix[i][j][k]; k++)
-					if (matrix[i][j][k] >= 'A' && matrix[i][j][k] <= 'Z')
-						matrix[i][j][k] += diff;
-			}
+		for (i = 0; i < number; i++)
+		{
+			if (strlen(str[i]) > 1)
+				add = strlen(str[i]) - 1;
 			else
+				add = strlen(str[i]);
+
+			add = (80 - add) / 2;
+			for (j = 0; j < add; j++)
 			{
-				for (int k = 0; matrix[i][j][k]; k++)
-					if (matrix[i][j][k] >= 'a' && matrix[i][j][k] <= 'z')
-						matrix[i][j][k] -= diff;
+				fputc(' ', ptrFile);
 			}
+			fputs(str[i], ptrFile);
 		}
-	}
 
-	printf("-----------------------------\nМассивы после преобразования:\n");
-	for (i = 0; i < NUM_OF_MATRIX; i++)
-	{
-		printf("\nArray %d:\n", i + 1);
-		for (j = 0; j < NUM_OF_WORDS; j++)
+
+		for (i = 0; i < 100; i++)
 		{
-			puts(matrix[i][j]);
+			free(str[i]);
 		}
-		putchar('\n');
+
+		free(str);
+		fclose(ptrFile);
 	}
 
-	for (i = 0; i < NUM_OF_MATRIX; i++)
-	{
-		for (j = 0; j < NUM_OF_WORDS; j++)
-		{
-			free(matrix[i][j]);
-		}
-		free(matrix[i]);
-	}
-	free(matrix);
-
-	getchar();
 	return 0;
 }
