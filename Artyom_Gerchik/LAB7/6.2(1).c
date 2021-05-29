@@ -15,6 +15,7 @@ long howMuchOrders = 0;
 long howMuchBooksSelledForAllTime = 0;
 double howMuchCashForAllTime = 0;
 char logs[100500];
+int booksHere = 0;
 
 typedef enum statement{
     initial,
@@ -101,77 +102,59 @@ void warehouse() {
     printf("\n-----------------------------WAREHOUSE-----------------------------\n");
 }
 
-void getBookkeping(){
-    FILE* filePointer;
-    filePointer = fopen("bookkepping.txt", "r");
-    
-    char cash[100500];
-    char booksSold[100500];
-    fgets(cash, 100500, filePointer);
-    fgets(booksSold, 100500, filePointer);
-    
-    howMuchCashForAllTime = strtod(cash, NULL);
-    howMuchBooksSelledForAllTime = atol(booksSold);
 
-    fclose(filePointer);
-}
-
-void saveBookkepping(){
-    
-    FILE* filePointer;
-    filePointer = fopen("bookkepping.txt", "w");
-    
-    char cash[100500];
-    char bookSold[100500];
-    
-    sprintf(cash, "%f", howMuchCashForAllTime);
-    sprintf(bookSold, "%ld", howMuchBooksSelledForAllTime);
-    
-    fputs(cash, filePointer);
-    fputs("\n", filePointer);
-    fputs(bookSold, filePointer);
-    
-    fclose(filePointer);
-}
 
 double cleanProfit = 0;
 long tempCountOfBooks = 0;
 double tempCash = 0;
 bool wasFirstTimeHere = false;
+int books = 0;
 
-void silentCashBox(){ // to save info about cash and number of books, but not to show it to user.
-    getBookkeping();
-    double dirtyProfit = (cashFromSelling - cashWastedForBuyingBooks);
-    cleanProfit = (dirtyProfit - cashForWorkers - cashForPlacement);
-    if(!wasFirstTimeHere){
-        tempCountOfBooks = howMuchBooksSelled;
-        tempCash = cleanProfit;
-        howMuchCashForAllTime += cleanProfit;
-        howMuchBooksSelledForAllTime += howMuchBooksSelled;
-        wasFirstTimeHere = true;
-        saveBookkepping();
-        return;
-    }
-    if((howMuchBooksSelled - tempCountOfBooks) == 0){
-        tempCountOfBooks = howMuchBooksSelled;
-        tempCash = cleanProfit;
-        //howMuchCashForAllTime += cleanProfit;
-        // howMuchBooksSelledForAllTime += howMuchBooksSelled;
-    }
-    else if((howMuchBooksSelled - tempCountOfBooks) > 0){
-        howMuchBooksSelledForAllTime += (howMuchBooksSelled - tempCountOfBooks);
-        tempCountOfBooks = howMuchBooksSelled;
-        if(tempCash < 0 && cleanProfit < 0){
-            double res = fabs(tempCash) - fabs(cleanProfit);
-            howMuchCashForAllTime += res;
-        }
-        else if(tempCash > 0 && cleanProfit > 0){
-            double res = (cleanProfit - tempCash);
-            howMuchCashForAllTime += res;
-        }
-    }
-    saveBookkepping();
-}
+//void silentCashBox(){ // to save info about cash and number of books, but not to show it to user.
+//    getBookkeping();
+//    if(!wasFirstTimeHere){
+//       books = booksHere;
+//    }
+//
+//    double dirtyProfit = (cashFromSelling - cashWastedForBuyingBooks);
+//    cleanProfit = (dirtyProfit - cashForWorkers - cashForPlacement);
+//
+//    if(!wasFirstTimeHere){
+//        tempCountOfBooks = howMuchBooksSelled;
+//        tempCash = cleanProfit;
+//        howMuchCashForAllTime += cleanProfit;
+//        howMuchBooksSelledForAllTime += howMuchBooksSelled;
+//        wasFirstTimeHere = true;
+//        saveBookkepping();
+//        return;
+//    }
+//    if((howMuchBooksSelled - tempCountOfBooks) == 0){
+//        tempCountOfBooks = howMuchBooksSelled;
+//        tempCash = cleanProfit;
+//        //howMuchCashForAllTime += cleanProfit;
+//        // howMuchBooksSelledForAllTime += howMuchBooksSelled;
+//    }
+//    else if((howMuchBooksSelled - tempCountOfBooks) > 0 ){
+//        howMuchBooksSelledForAllTime += (howMuchBooksSelled - tempCountOfBooks);
+//        tempCountOfBooks = howMuchBooksSelled;
+//        if(tempCash < 0 && cleanProfit < 0){
+//            double res = fabs(tempCash) - fabs(cleanProfit);
+//            howMuchCashForAllTime += res;
+//        }
+//        else if(cleanProfit > 0 && tempCash < 0){
+//            float temp = cleanProfit -  fabs(tempCash);
+//            howMuchCashForAllTime = temp;
+//        }
+//        else if(tempCash > 0 && cleanProfit > 0){
+//            double res = (cleanProfit - tempCash);
+//            howMuchCashForAllTime += res;
+//        }
+//
+//    }
+//    saveBookkepping();
+//}
+
+void getBookkeping(void);
 
 void cashBox(){
     getBookkeping();
@@ -191,8 +174,8 @@ void cashBox(){
     if(!wasFirstTimeHere){
         tempCountOfBooks = howMuchBooksSelled;
         tempCash = cleanProfit;
-        howMuchCashForAllTime += cleanProfit;
-        howMuchBooksSelledForAllTime += howMuchBooksSelled;
+        //howMuchCashForAllTime += cleanProfit;
+        //howMuchBooksSelledForAllTime += howMuchBooksSelled;
         wasFirstTimeHere = true;
         printf("How Much Cash For All Time: %f\n", howMuchCashForAllTime);
         printf("How Much Books Selled For All Time: %ld\n\n", howMuchBooksSelledForAllTime);
@@ -203,12 +186,18 @@ void cashBox(){
             printf("Clean Profit < 0, It Is A Time Wasting, Not A Business.\n");
         }
         printf("------------------------------CASHBOX------------------------------\n");
-        saveBookkepping();
+        //saveBookkepping();
         return;
     }
     if((howMuchBooksSelled - tempCountOfBooks) == 0){
+        
+//        float difference = fabs(cleanProfit) - fabs(tempCash);
+//        if(cleanProfit < 0){
+//            -difference;
+//        }
         tempCountOfBooks = howMuchBooksSelled;
         tempCash = cleanProfit;
+        
         //howMuchCashForAllTime += cleanProfit;
         // howMuchBooksSelledForAllTime += howMuchBooksSelled;
     }
@@ -216,12 +205,12 @@ void cashBox(){
         howMuchBooksSelledForAllTime += (howMuchBooksSelled - tempCountOfBooks);
         tempCountOfBooks = howMuchBooksSelled;
         if(tempCash < 0 && cleanProfit < 0){
-            double res = fabs(tempCash) - fabs(cleanProfit);
-            howMuchCashForAllTime += res;
+            //double res = fabs(tempCash) - fabs(cleanProfit);
+            //howMuchCashForAllTime += res;
         }
         else if(tempCash > 0 && cleanProfit > 0){
-            double res = (cleanProfit - tempCash);
-            howMuchCashForAllTime += res;
+            //double res = (cleanProfit - tempCash);
+            //howMuchCashForAllTime += res;
         }
     }
     printf("How Much Cash For All Time: %f\n", howMuchCashForAllTime);
@@ -233,7 +222,7 @@ void cashBox(){
         printf("Clean Profit < 0, It Is A Time Wasting, Not A Business.\n");
     }
     printf("------------------------------CASHBOX------------------------------\n");
-    saveBookkepping();
+    //saveBookkepping();
 }
 
 void insertElementLast(Book bookToInsert, bool areYouFromMannualAdd) {
@@ -593,8 +582,41 @@ void addBookMannually(){
     
     for(int counter = 0; counter < bookToInsert.lot; counter++){
         insertElementLast(bookToInsert, true);
+        booksHere++;
     }
     saveToFile();
+}
+
+void getBookkeping(){
+    FILE* filePointer;
+    filePointer = fopen("bookkepping.txt", "r");
+    
+    char cash[100500];
+    char booksSold[100500];
+    fgets(cash, 100500, filePointer);
+    fgets(booksSold, 100500, filePointer);
+    
+    howMuchCashForAllTime = strtod(cash, NULL);
+    howMuchBooksSelledForAllTime = atol(booksSold);
+
+    fclose(filePointer);
+}
+
+void saveBookkepping(){
+    FILE* filePointer;
+    filePointer = fopen("bookkepping.txt", "w");
+    
+    char cash[100500];
+    char bookSold[100500];
+    
+    sprintf(cash, "%f", howMuchCashForAllTime += cleanProfit);
+    sprintf(bookSold, "%ld", howMuchBooksSelledForAllTime += howMuchBooksSelled);
+    
+    fputs(cash, filePointer);
+    fputs("\n", filePointer);
+    fputs(bookSold, filePointer);
+    
+    fclose(filePointer);
 }
 
 int main() {
@@ -617,7 +639,9 @@ int main() {
                 
                 switch (userInput) {
                     case '0':
-                        warehouse();
+                        getBookkeping();
+                        saveBookkepping();
+                        //warehouse();
                         return 0;
                         break;
                     case '1':
@@ -656,17 +680,19 @@ int main() {
                         printf("BookKepping Saved!\n");
                         //howMuchCashForAllTime += cleanProfit;
                         //howMuchBooksSelledForAllTime += howMuchBooksSelled;
+                        //silentCashBox();
                         saveBookkepping();
                         return 0;
                         break;
                         
                     case '1':
                         addBookMannually();
+                        //silentCashBox();
                         break;
                         
                     case '2':
                         sellBook();
-                        silentCashBox();
+                        //silentCashBox();
                         break;
                         
                     case '3':
