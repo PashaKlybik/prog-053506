@@ -74,7 +74,7 @@ void getInfoAboutBooksForUser() {
         printf("\nHowMuchCurrent: %d",tempPointer->book.howMuchCurrent);
         printf("\nName: %s",tempPointer->book.name);
         printf("\nAuthor: %s",tempPointer->book.author);
-        printf("\nBuyPrice: %f",tempPointer->book.buyPrice);
+        //printf("\nBuyPrice: %f",tempPointer->book.buyPrice);
         printf("\nSellPrice: %f\n",tempPointer->book.sellPrice);
         tempPointer = tempPointer->next;
     }
