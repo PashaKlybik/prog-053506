@@ -1,0 +1,13 @@
+int main()
+{
+  char input[100000];
+
+//    printf("Enter text: ");
+  fgets(input, sizeof(input), stdin);
+//
+//
+   printf("Count words: %d\n", countW(input));
+  printf("Count sentences: %d\n\n", countS(input));
+//    LongestW(input);
+   LongestS(input);
+}
