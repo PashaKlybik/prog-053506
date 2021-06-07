@@ -4,11 +4,10 @@
 #include "doubly_linked_list.h"
 
 int main() {
-        List* list = listInit(INT);
+        List* list = (List*)calloc(1, sizeof(List));
         for(int i = 0; i < 10; i++) {
-                int* ptr = malloc(4);
-                *ptr = i;
-                listAdd(list, ptr);
+                enqueue(list, i);
         }
+        printQueue(list);
         printf("\n");
 }
