@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+﻿#define _CRT_SECURE_NO_DEPRECATE
+#include <stdio.h>
 #include <windows.h>
 #include <locale.h>
 #include <cmath>
@@ -44,7 +45,7 @@ int main()
 	setlocale(LC_ALL, "Russian");   
 	double x=0,e=0;
 	printf("Введите угол x (в радианах) : ");
-	while (scanf_s("%lf", &x) == 0)
+	while (scanf("%lf", &x) == 0)
 	{
 			printf("Некорректный ввод. попробуйте ещё раз \n");
 			while (getchar() != '\n') {}
@@ -53,7 +54,7 @@ int main()
 	printf("Введите погрешность: ");
 	while (e < 0.000000000000001)
 	{
-		while (scanf_s("%lf", &e) == 0)
+		while (scanf("%lf", &e) == 0)
 		{
 			printf("Некорректный ввод. попробуйте ещё раз \n");
 			while (getchar() != '\n') {}
