@@ -80,7 +80,7 @@ int main()
     int e=-1;
     while (1)
     {
-        while (scanf_s("%d", &e) == 0)
+        while (scanf("%d", &e) == 0)
         {
             printf("Некорректный ввод. попробуйте ещё раз \n");
             while (getchar() != '\n') {}
