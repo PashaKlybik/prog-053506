@@ -12,82 +12,100 @@
 #ifndef DOUBLY_LINKED_LIST_H
 #define DOUBLY_LINKED_LIST_H
 
-typedef struct ElementOfList {
-        struct ElementOfList* prev;
-        struct ElementOfList* next;
-        int data;
-} ElementOfList;
+typedef struct ElementOfList ElementOfList;
+struct ElementOfList {
+        ElementOfList* _prev;
+        ElementOfList* _next;
+        void* data;
+};
 
-typedef struct List {
-        struct ElementOfList* first;
-        struct ElementOfList* last;
-} List;
+typedef struct List List;
+struct List {
+        ElementOfList* _first;
+        ElementOfList* _last;
 
-void addTo(List* list, int data, int index) {
-        ElementOfList* current = list->first;
-        while(index > 0) {
-                current = current->next;
+        //Functions
+        void (*add)(List*, void* data);
+        void (*addAt)(List*, void* data, int index);
+        void (*removeAt)(List*, int index);
+        void* (*elementAt)(List*, int index);
+};
+
+void* _listElementAt(List* list, int index) {
+        ElementOfList* current = list->_first;
+        while(index-- > 0 && current != NULL) {
+                current = current->_next;
         }
-        ElementOfList* el = (ElementOfList*)malloc(sizeof(ElementOfList));
-        el->data = data;
-        el->prev = current;
-        el->next = current->next;
-        current->next = el;
-        el->prev->next = current;
-}
-
-int getAt(List* list, int data, int index) {
-        ElementOfList* current = list->first;
-        while(index > 0) {
-                current = current->next;
-        }
-        return current->data;
-}
-
-void enqueue(List* list, int data) {
-        ElementOfList* el = (ElementOfList*)malloc(sizeof(ElementOfList));
-        el->data = data;
-        el->prev = NULL;
-        el->next = list->last;
-        if(list->last != NULL) {
-                list->last->prev = el;
-        }
-        list->last = el;
-        if(list->first == NULL) {
-                list->first = el;
-        }
-}
-
-int dequeue(List* list) {
-        if(list->first == NULL) {
-#ifdef _STDIO_H
-                printf("list is empty\n");
-#endif
-                exit(1);
-        }
-
-        int data = list->first->data;
-        ElementOfList* temp = list->first;
-        list->first = list->first->prev;
-        free(temp);
-        if(list->first != NULL) {
-                list->first->next = NULL;
+        if(current == NULL) {
+                return NULL;
         } else {
-                list->last = NULL;
+                return current->data;
         }
-        return data;
 }
 
-#ifdef _STDIO_H
-void printQueue(List* list) {
-        ElementOfList* current = list->first;
-        printf("<");
-        while(current != NULL) {
-                printf("%d ", current->data);
-                current = current->prev;
+void _listAdd(List* list, void* data) {
+        ElementOfList* element = (ElementOfList*)malloc(sizeof(ElementOfList));
+        element->data = data;
+        element->_next = NULL;
+        element->_prev = list->_last;
+        if(list->_last != NULL) {
+                list->_last->_next = element;
         }
-        printf(" <\n");
+        list->_last = element;
+        if(list->_first == NULL) {
+                list->_first = list->_last->_prev;
+        }
 }
-#endif
+
+void _listAddAt(List* list, void* data, int index) {
+        ElementOfList* current = list->_first;
+        while(index > 0 && current != NULL) {
+                current = current->_next;
+                index--;
+        }
+        ElementOfList* el = (ElementOfList*)malloc(sizeof(ElementOfList));
+        el->data = data;
+        el->_prev = current;
+        if(current != NULL) {
+                el->_next = current->_next;
+                current->_next = el;
+                el->_prev->_next = current;
+        } else {
+                el->_next = NULL;
+                current = el;
+        }
+}
+
+void _listRemoveAt(List* list, int index) {
+        ElementOfList* current = list->_first;
+        while(index-- > 0 && current != NULL) {
+                current = current->_next;
+        }
+        if(current != NULL) {
+                current->_prev->_next = current->_next;
+                current->_next->_prev = current->_prev;
+                free(current);
+        }
+}
+
+List* initList() {
+        List* ptr = (List*)malloc(sizeof(List));
+        ptr->_first = NULL;
+        ptr->_last = NULL;
+        ptr->add = _listAdd;
+        ptr->elementAt = _listElementAt;
+        ptr->addAt = _listAddAt;
+        ptr->removeAt = _listRemoveAt;
+        return ptr;
+}
+
+void freeList(List* list) {
+        ElementOfList* current = list->_first;
+        while(current != NULL) {
+                free(current);
+                current = current->_next;
+        }
+        free(list);
+}
 
 #endif //DOUBLY_LINKED_LIST_H

@@ -2,12 +2,22 @@
 
 #include <stdio.h>
 #include "doubly_linked_list.h"
+#include "criminal.h"
 
 int main() {
-        List* list = (List*)calloc(1, sizeof(List));
-        for(int i = 0; i < 10; i++) {
-                enqueue(list, i);
-        }
-        printQueue(list);
+        CriminalList* cl = initCriminalList();
+
+        cl->add(cl);
+
+        //printf("%s", ((Criminal*)cl->data->elementAt(cl->data, 0))->fullName);
+
+        //printf("printing database...\n\n\n");
+
+        //for(int i = 0; i < 3; i++) {
+        //        printCriminal(
+        //                cl->elementAt(cl, i)
+        //        );
+        //}
+
         printf("\n");
 }
