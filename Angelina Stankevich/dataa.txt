@@ -1,0 +1,29 @@
+someWeirdoGuy otherStrangeOne 5
+SomeText
+SomeMoreText
+weird!
+weirdoGuyNumber2 whosThat 5
+qwe!
+#
+album1
+someWeirdoGuy
+album2
+weirdoGuyNumber2
+#
+someWeirdoGuy
+album1#
+sadfsdvdfadv
+dfadfsad
+fsadfsad!
+weirdoGuyNumber2
+album2#
+qweqwrqw!
+#
+rock
+otherStrangeOne
+fsdfdasfsdv
+dfsadf!
+qwe
+whosThat
+ffwqwdq!
+#
