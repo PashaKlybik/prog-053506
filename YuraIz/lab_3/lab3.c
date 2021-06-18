@@ -1,6 +1,8 @@
+//Task 3.2(21)
+
 #include <stdio.h>
 #include <stdlib.h>
-//Lab 3.2(21) YuraIz
+
 double** GaussJordan(double** matrix, int n) {
         double** invertibleMatrix = (double**)calloc(n, sizeof(double*));
         double** bigMatrix = (double**)calloc(n, sizeof(double*));
