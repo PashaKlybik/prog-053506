@@ -1,41 +1,37 @@
 //task 2.2 var 6
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
-#include <locale.h>
 
-double factorial(int n)
-{
-	if (n == 0)
-		return 0;
-	if (n == 1)
-		return 1;
-	return (double)(n * factorial(n - 1));
+int FindN(double x, double e);
+int FindN(double x, double e) {
+    double left = sin(x), right = 0, a = x, b = 1;
+    int n = 0;
+    while (fabs(left - right) >= e) {
+        if (n % 2 == 0) {
+            right += a / b;
+        } else {
+            right -= a / b;
+        }
+        n++;
+        a *= x * x;
+        b *= 2 * n * (2 * n + 1);
+    }
+    return n;
 }
 
-int result(int x, double e)
-{
-	int n = 0;
-	double sum = 0;
-
-	do {
-		n++;
-		sum += pow(-1, n - 1) * (pow(x, 2 * n - 1) / factorial(2 * n - 1));
-	} while (fabs(sin(x) - sum) >= e);
-	return n;
-}
-
-int main()
-{
-	char* locale = setlocale(LC_ALL, "");
-	double eps, x; 
-	printf("________________________________________________________________________________________________________________________\n");
-	printf("Введите x: ");
-	scanf("%lf", &x);
-	printf("________________________________________________________________________________________________________________________\n");
-	printf("Введите погрешность: ");
-	scanf("%lf", &eps);
-	printf("________________________________________________________________________________________________________________________\n");
-	printf("Переменная n равна %d", result(x, eps));
-	return 0;
+int main() {
+    double x, e;
+    printf("Enter your angel x (x > 0):\n");
+    while (scanf("%lf", &x) != 1 || x <= 0) {
+        printf("Error, enter again\n");
+        while (getchar() != '\n') {}
+    }
+    printf("Enter your e (e > 0):\n");
+    while (scanf("%lf", &e) != 1 || e <= 0) {
+        printf("Error, enter again\n");
+        while (getchar() != '\n') {}
+    }
+    printf("N = %d\n", FindN(x, e));
+    // system("pause");
+    return 0;
 }
