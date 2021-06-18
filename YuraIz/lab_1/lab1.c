@@ -1,3 +1,5 @@
+//Task 1.2(8)
+
 #include <stdio.h>
 
 int main() {
