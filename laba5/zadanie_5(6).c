@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
-#include <assert.h>
 typedef struct service
 {
     int serviceTime;
@@ -18,8 +17,74 @@ void AddService(Service* serv, int number);
 
 int Result(Service* serv, int maxSum);
 
-void test() {
-    int maxSum = 100;
+void AddService(Service* serv, int number) {
+
+    Service* p = (Service*)malloc(sizeof(Service));
+    if (p == NULL) {
+        exit(2);
+    }
+    p->serviceTime = rand() % 100;
+    p->prev = serv;
+    p->next = NULL;
+    p->number = number;
+    serv->next = p;
+}
+
+void BSrt(Service* serv) {
+
+    Service* temp = serv;
+    Service* tempNext = temp->next;
+    int tr = 1;
+    while (tr) {
+        tr = 0;
+
+        while (serv->next) {
+
+            if (serv->serviceTime > tempNext->serviceTime) {
+                tr = 1;
+                int tempST = serv->serviceTime;
+                int tempNumber = serv->number;
+                serv->serviceTime = tempNext->serviceTime;
+                serv->number = tempNext->number;
+                tempNext->serviceTime = tempST;
+                tempNext->number = tempNumber;
+            }
+
+            serv = serv->next;
+            tempNext = serv->next;
+        }
+
+        while (serv->prev) {
+            serv = serv->prev;
+        }
+        tempNext = serv->next;
+    }
+}
+int Result(Service* serv, int maxSum) {
+
+    int servSum = 0, answ = 0, i = 1;
+    printf("\nRoute: ");
+    while (serv) {
+
+        servSum += serv->serviceTime;
+        if (servSum < maxSum) {
+            printf("%d ", serv->number);
+            answ += i * serv->number;
+        }
+        else {
+            break;
+        }
+        serv = serv->next;
+        i *= 10;
+    }
+    return answ;
+}
+
+int main() {
+
+    srand(time(NULL));
+    int numberOfStructures = 0;
+    int maxSum;
     Service* serv = (Service*)malloc(sizeof(Service));
     if (serv == NULL) {
         exit(2);
@@ -30,66 +95,35 @@ void test() {
     serv->number = 0;
     Service* first = serv;
 
-    Service* q = (Service*)malloc(sizeof(Service));
-    if (q == NULL) {
-        exit(2);
-    }
-    q->serviceTime = 10;
-    q->prev = serv;
-    q->next = NULL;
-    q->number = 1;
-    serv->next = q;
-    serv = serv->next;
+    printf("Enter N - number of services\n");
+    scanf("%d", &numberOfStructures);
+    printf("Enter T - time\n");
+    scanf("%d", &maxSum);
+    for (int i = 1; i < numberOfStructures; i++) {
 
-    Service* w = (Service*)malloc(sizeof(Service));
-    if (w == NULL) {
-        exit(2);
+        AddService(serv, i);
+        serv = serv->next;
     }
-    w->serviceTime = 30;
-    w->prev = serv;
-    w->next = NULL;
-    w->number = 2;
-    serv->next = w;
-    serv = serv->next;
-
-    Service* e = (Service*)malloc(sizeof(Service));
-    if (e == NULL) {
-        exit(2);
-    }
-    e->serviceTime = 20;
-    e->prev = serv;
-    e->next = NULL;
-    e->number = 3;
-    serv->next = e;
-    serv = serv->next;
-
-    Service* r = (Service*)malloc(sizeof(Service));
-    if (r == NULL) {
-        exit(2);
-    }
-    r->serviceTime = 100;
-    r->prev = serv;
-    r->next = NULL;
-    r->number = 4;
-    serv->next = r;
-    serv = serv->next;
     serv = first;
 
+    while (serv) {
+        printf("%d - %d  ", serv->number, serv->serviceTime);
+        serv = serv->next;
+    }
+    serv = first;
+    printf("\n");
 
     BSrt(serv);
     serv = first;
-    assert(Result(serv, maxSum) == 231);
-    free(q);
-    free(w);
-    free(e);
-    free(r);
+
+    while (serv) {
+        printf("%d - %d  ", serv->number, serv->serviceTime);
+        serv = serv->next;
+    }
+
+    serv = first;
+    int servSum = 0;
+    maxSum = Result(serv, maxSum);
     free(serv);
-
-}
-
-#undef main
-
-int main() {
-    test();
     return 0;
 }
