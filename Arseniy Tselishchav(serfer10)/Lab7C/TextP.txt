@@ -1,0 +1,6 @@
+1,101,Wroclaw,Warsaw,Done,04:00,12.12
+2,210,Praga,Vienna,Prague,10:15,10.05
+3,101,Wroclaw,Warsaw,Done,05:10,13.12
+4,430,Paris,Boris,Lom,20:45,05.06
+5,523,Paris,Kobra,Sandiego,01:00,05.07
+6,655,London,Munich,Luxembourg,09:18,03.07
