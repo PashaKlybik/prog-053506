@@ -1,0 +1,111 @@
+﻿  7.3.cpp
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(17,9): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(17,9): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(17,15): error C2238: непредвиденные лексемы перед ";"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(34,33): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(76,9): error C3861: addEntrant: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(60,25): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(61,27): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(63,23): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(64,21): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(65,22): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(66,21): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(67,21): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(69,15): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(71,15): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(73,15): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(82,77): error C2660: entryPoints: функция не принимает 1 аргументов
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(80,6): message : см. объявление "entryPoints"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(82,16): warning C4473: "printf": передано недостаточно аргументов для строки формата
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(82,16): message : заполнители и их параметры ожидают переменное число аргументов в количестве 2, но было предоставлено 1
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(82,16): message : отсутствующий вариативный аргумент "2" требуется для строки форматирования "%d"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(91,23): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(123,33): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(127,17): error C3861: getInfo: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(138,17): error C3861: BackPush: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(147,17): error C3861: BackPush: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(155,17): error C3861: BackPush: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(165,27): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(168,17): error C3861: Removal: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(175,27): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(178,17): error C3861: Removal: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(185,23): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(188,17): error C3861: Removal: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(206,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(218,21): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(223,21): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(228,17): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(305,20): error C3861: getString: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(307,18): error C3861: getString: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(309,19): error C3861: getString: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(311,18): error C3861: getString: идентификатор не найден
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(314,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(322,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(330,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(338,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(361,20): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(363,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(364,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(365,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(366,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(367,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(368,19): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(370,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(371,19): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(373,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(374,19): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(376,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(377,19): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(379,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(380,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(381,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(382,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(369,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(372,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(375,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(378,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(394,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(396,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(398,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(400,9): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(410,20): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(411,8): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(411,19): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(412,12): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(413,13): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(425,24): error C2039: "head": не является членом "Listing".
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(16): message : см. объявление "Listing"
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(456,9): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(515,13): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\User\Desktop\7.3\7.3\7.3\7.3.cpp(569,9): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
