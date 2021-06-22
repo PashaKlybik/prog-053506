@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct {
+typedef struct Entrant{
     char* fullName;
     char* Number;
     char* school;
@@ -13,21 +13,19 @@ typedef struct {
     int SRB;
 }Entrant;
 
-typedef struct {
+typedef struct Node {
+        Entrant* data;
+        struct Node* prev;
+        struct Node* next;
+}Node;
+
+typedef struct Listing {
     Node* head;
     int size;
     int placesForFreeTraining;
     const char* NameSpecial;
     const char* SpecialtyName;
 }Listing;
-
-typedef struct node {
-    Entrant* data;
-    struct node* prev;
-    struct node* next;
-}Node;
-
-
 
 void WriteToFile(Listing* faculty[], int size, const char* facul, FILE* a) {
     for (int i = 0; i < size; i++) {
@@ -46,6 +44,82 @@ void WriteToFile(Listing* faculty[], int size, const char* facul, FILE* a) {
             tmp = tmp->next;
         }
     }
+}
+
+void BackPush(Listing* l, Entrant* ap) {
+        Node* tmp = l->head;
+        if(tmp == NULL) {
+                l->head = (Node*)malloc(sizeof(Node));
+                l->head->next = NULL;
+                l->head->prev = NULL;
+                l->head->data = (Entrant*)malloc(sizeof(Entrant));
+                l->head->data->fullName = (char*)malloc(60 * sizeof(char));
+                strcpy(l->head->data->fullName, ap->fullName);
+                strcpy(ap->fullName, "");
+                l->head->data->Number = (char*)malloc(10 * sizeof(char));
+                strcpy(l->head->data->Number, ap->Number);
+                strcpy(ap->Number, "");
+                l->head->data->address = (char*)malloc(60 * sizeof(char));
+                strcpy(l->head->data->address, ap->address);
+                strcpy(ap->address, "");
+                l->head->data->school = (char*)malloc(60 * sizeof(char));
+                strcpy(l->head->data->school, ap->school);
+                strcpy(ap->school, "");
+                l->head->data->SRB = ap->SRB;
+                l->head->data->BelarusianorRussianlanguage = ap->BelarusianorRussianlanguage;
+                l->head->data->mat = ap->mat;
+                l->head->data->physics = ap->physics;
+        }
+
+        else {
+                while(tmp->next != NULL) {
+                        tmp = tmp->next;
+                }
+                tmp->next = (Node*)malloc(sizeof(Node));
+                (tmp->next)->next = NULL;
+                (tmp->next)->prev = tmp;
+                (tmp->next)->data = (Entrant*)malloc(sizeof(Entrant));
+                (tmp->next)->data->fullName = (char*)malloc(60 * sizeof(char));
+                strcpy((tmp->next)->data->fullName, ap->fullName);
+                (tmp->next)->data->Number = (char*)malloc(10 * sizeof(char));
+                strcpy((tmp->next)->data->Number, ap->Number);
+                (tmp->next)->data->address = (char*)malloc(60 * sizeof(char));
+                strcpy((tmp->next)->data->address, ap->address);
+                (tmp->next)->data->school = (char*)malloc(60 * sizeof(char));
+                strcpy((tmp->next)->data->school, ap->school);
+                (tmp->next)->data->SRB = ap->SRB;
+                (tmp->next)->data->BelarusianorRussianlanguage = ap->BelarusianorRussianlanguage;
+                (tmp->next)->data->mat = ap->mat;
+                (tmp->next)->data->physics = ap->physics;
+        }
+        l->size++;
+}
+
+void addEntrant(Entrant* c, char* faculty, char* specialty, Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9]) {
+        if(strcmp(faculty, "ФКСиС") == 0) {
+                for(int i = 0; i < 4; i++) {
+                        if(strcmp(specialty, FCSandN[i]->SpecialtyName) == 0) {
+                                BackPush(FCSandN[i], c);
+                                return;
+                        }
+                }
+        }
+
+        else if(strcmp(faculty, "ФИТУ") == 0) {
+                for(int i = 0; i < 5; i++) {
+                        if(strcmp(specialty, FITandM[i]->SpecialtyName) == 0) {
+                                BackPush(FITandM[i], c);
+                                return;
+                        }
+                }
+        }     else if(strcmp(faculty, "ФКП") == 0) {
+                for(int i = 0; i < 9; i++) {
+                        if(strcmp(specialty, FCE[i]->SpecialtyName) == 0) {
+                                BackPush(FCE[i], c);
+                                return;
+                        }
+                }
+        }
 }
 
 void FromFile(Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9], FILE* a) {
@@ -77,13 +151,8 @@ void FromFile(Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9], FILE* a
     }
 }
 
-void entryPoints(Listing* faculty[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("\n%s: %d", faculty[i]->SpecialtyName, entryPoints(faculty[i]));
-    }
-}
 
-int entryPoints(Listing* spec) {
+int entryPoint(Listing* spec) {
     if (spec->size == 0)
         return 0;
     int res;
@@ -117,13 +186,23 @@ int entryPoints(Listing* spec) {
     return res;
 }
 
+void entryPoints(Listing* faculty[], int size) {
+        for(int i = 0; i < size; i++) {
+                printf("\n%s: %d", faculty[i]->SpecialtyName, entryPoint(faculty[i]));
+        }
+}
+
+void getInfo(Entrant* ap) {
+        printf("\nФИО: %s\t\t\tБалл: %d", ap->fullName, ap->SRB + ap->mat + ap->BelarusianorRussianlanguage + ap->physics);
+}
+
 void Enrolled(Listing* faculty[], int size) {
     for (int i = 0; i < size; i++) {
         printf("\n\n%s:", faculty[i]->SpecialtyName);
         Node* tmp = faculty[i]->head;
         for (int j = 0; j < faculty[i]->size; j++) {
             int score = tmp->data->physics + tmp->data->BelarusianorRussianlanguage + tmp->data->SRB + tmp->data->mat;
-            if (score >= entryPoints(faculty[i])) {
+            if (score >= entryPoint(faculty[i])) {
                 getInfo(tmp->data);
             }
             tmp = tmp->next;
@@ -131,32 +210,34 @@ void Enrolled(Listing* faculty[], int size) {
     }
 }
 
-void addEntrant(Entrant* c, char* faculty, char* specialty, Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9]) {
-    if (strcmp(faculty, "ФКСиС") == 0) {
-        for (int i = 0; i < 4; i++) {
-            if (strcmp(specialty, FCSandN[i]->SpecialtyName) == 0) {
-                BackPush(FCSandN[i], c);
-                return;
-            }
+void Front(Listing* l) {
+        Node* del = l->head;
+        l->head = (l->head)->next;
+        if(l->head != NULL) {
+                (l->head)->prev = NULL;
         }
-    }
+        free(del->data);
+        free(del);
+        l->size--;
+}
 
-    else if (strcmp(faculty, "ФИТУ") == 0) {
-        for (int i = 0; i < 5; i++) {
-            if (strcmp(specialty, FITandM[i]->SpecialtyName) == 0) {
-                BackPush(FITandM[i], c);
-                return;
-            }
+void Removal(Listing* l, int index) {
+        if(index == 0) {
+                Front(l);
+        } else if(index < l->size) {
+                Node* tmp = l->head;
+                for(int i = 0; i < index - 1 && tmp->next != NULL; i++) {
+                        tmp = tmp->next;
+                }
+                Node* del = tmp->next;
+                tmp->next = del->next;
+                if(del->next != NULL) {
+                        (del->next)->prev = tmp;
+                }
+                free(del->data);
+                free(del);
+                l->size--;
         }
-    }
-    else if (strcmp(faculty, "ФКП") == 0) {
-        for (int i = 0; i < 9; i++) {
-            if (strcmp(specialty, FCE[i]->SpecialtyName) == 0) {
-                BackPush(FCE[i], c);
-                return;
-            }
-        }
-    }
 }
 
 void deleteEntrant(char* name, Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9]) {
@@ -208,6 +289,21 @@ int menu() {
             fflush(stdin);
     }
     return d;
+}
+
+char* getString() {
+        char* string = (char*)malloc(60 * sizeof(char));
+        char symbol = 'f';
+        int index = 0;
+        while(symbol != '\n') {
+                symbol = getc(stdin);
+                if(symbol != '\n') {
+                        string[index] = symbol;
+                        index++;
+                }
+        }
+        string[index] = '\0';
+        return string;
 }
 
 void initialization(Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9]) {
@@ -293,10 +389,6 @@ void initialization(Listing* FCSandN[4], Listing* FITandM[5], Listing* FCE[9]) {
 
 }
 
-void getInfo(Entrant* ap) {
-    printf("\nФИО: %s\t\t\tБалл: %d", ap->fullName, ap->SRB + ap->mat + ap->BelarusianorRussianlanguage + ap->physics);
-}
-
 void SetInfo(Entrant* ap) {
     int e, d;
     fflush(stdin);
@@ -340,101 +432,6 @@ void SetInfo(Entrant* ap) {
             fflush(stdin);
     }
     ap->mat = d;
-}
-
-char* getString() {
-    char* string = (char*)malloc(60 * sizeof(char));
-    char symbol = 'f';
-    int index = 0;
-    while (symbol != '\n') {
-        symbol = getc(stdin);
-        if (symbol != '\n') {
-            string[index] = symbol;
-            index++;
-        }
-    }
-    string[index] = '\0';
-    return string;
-}
-
-void BackPush(Listing* l, Entrant* ap) {
-    Node* tmp = l->head;
-    if (tmp == NULL) {
-        l->head = (Node*)malloc(sizeof(Node));
-        l->head->next = NULL;
-        l->head->prev = NULL;
-        l->head->data = (Entrant*)malloc(sizeof(Entrant));
-        l->head->data->fullName = (char*)malloc(60 * sizeof(char));
-        strcpy(l->head->data->fullName, ap->fullName);
-        strcpy(ap->fullName, "");
-        l->head->data->Number = (char*)malloc(10 * sizeof(char));
-        strcpy(l->head->data->Number, ap->Number);
-        strcpy(ap->Number, "");
-        l->head->data->address = (char*)malloc(60 * sizeof(char));
-        strcpy(l->head->data->address, ap->address);
-        strcpy(ap->address, "");
-        l->head->data->school = (char*)malloc(60 * sizeof(char));
-        strcpy(l->head->data->school, ap->school);
-        strcpy(ap->school, "");
-        l->head->data->SRB = ap->SRB;
-        l->head->data->BelarusianorRussianlanguage = ap->BelarusianorRussianlanguage;
-        l->head->data->mat = ap->mat;
-        l->head->data->physics = ap->physics;
-    }
-
-    else {
-        while (tmp->next != NULL) {
-            tmp = tmp->next;
-        }
-        tmp->next = (Node*)malloc(sizeof(Node));
-        (tmp->next)->next = NULL;
-        (tmp->next)->prev = tmp;
-        (tmp->next)->data = (Entrant*)malloc(sizeof(Entrant));
-        (tmp->next)->data->fullName = (char*)malloc(60 * sizeof(char));
-        strcpy((tmp->next)->data->fullName, ap->fullName);
-        (tmp->next)->data->Number = (char*)malloc(10 * sizeof(char));
-        strcpy((tmp->next)->data->Number, ap->Number);
-        (tmp->next)->data->address = (char*)malloc(60 * sizeof(char));
-        strcpy((tmp->next)->data->address, ap->address);
-        (tmp->next)->data->school = (char*)malloc(60 * sizeof(char));
-        strcpy((tmp->next)->data->school, ap->school);
-        (tmp->next)->data->SRB = ap->SRB;
-        (tmp->next)->data->BelarusianorRussianlanguage = ap->BelarusianorRussianlanguage;
-        (tmp->next)->data->mat = ap->mat;
-        (tmp->next)->data->physics = ap->physics;
-    }
-    l->size++;
-}
-
-void Front(Listing* l) {
-    Node* del = l->head;
-    l->head = (l->head)->next;
-    if (l->head != NULL) {
-        (l->head)->prev = NULL;
-    }
-    free(del->data);
-    free(del);
-    l->size--;
-}
-
-void Removal(Listing* l, int index) {
-    if (index == 0) {
-        Front(l);
-    }
-    else if (index < l->size) {
-        Node* tmp = l->head;
-        for (int i = 0; i < index - 1 && tmp->next != NULL; i++) {
-            tmp = tmp->next;
-        }
-        Node* del = tmp->next;
-        tmp->next = del->next;
-        if (del->next != NULL) {
-            (del->next)->prev = tmp;
-        }
-        free(del->data);
-        free(del);
-        l->size--;
-    }
 }
 
 void ListClear(Listing* l) {
