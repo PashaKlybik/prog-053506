@@ -1,0 +1,28 @@
+all: main test clean
+
+main:
+	g++ artist.cpp cart.cpp composition.cpp musicalDirection.cpp album.cpp mp3all.cpp main.cpp -o main 
+	main
+
+test:
+	g++ -O0 -Dmain=main main_test.cpp artist.cpp composition.cpp album.cpp musicalDirection.cpp mp3All.cpp -ftest-coverage -fprofile-arcs -o test 
+	./test
+	gcov -abcfu composition.cpp
+	gcov -abcfu album.cpp
+	gcov -abcfu artist.cpp
+	gcov -abcfu musicalDirection.cpp
+	gcov -abcfu mp3All.cpp
+
+clean:
+	del "*.gcda"
+	del "*.gcno"
+	del "stl*"
+	del "alloc*"
+	del "basic*"
+	del "cpp*"
+	del "new*"
+	del "type*"
+	del "vector.tcc.gcov"
+	del "test.exe"
+	del "main.exe"
+	del "move.h.gcov"
